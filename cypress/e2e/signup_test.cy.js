@@ -63,10 +63,6 @@ describe('User Account Creation using Test Data from Cypress Fixture', () => {
 
     before(() => {
         cy.clearCookies();
-        cy.clearLocalStorage();
-        cy.window().then((win) => {
-            win.sessionStorage.clear();
-        });
 
         // Load fixture data
         return cy.fixture('newUserData').then((data) => {
