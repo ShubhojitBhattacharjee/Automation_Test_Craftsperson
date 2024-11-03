@@ -1,0 +1,14 @@
+
+# Dependency directories
+node_modules/
+
+
+# lock files
+yarn.lock
+package-lock.json
+
+*/screenshots
+
+# IDE Files
+*.iml
+*.xml
