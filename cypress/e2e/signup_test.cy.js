@@ -57,3 +57,37 @@ describe('User Account Flow', () => {
     });
 });
 
+
+describe('User Account Creation using Test Data from Cypress Fixture', () => {
+    let testData;
+
+    before(() => {
+        cy.clearCookies();
+        cy.clearLocalStorage();
+        cy.window().then((win) => {
+            win.sessionStorage.clear();
+        });
+
+        // Load fixture data
+        return cy.fixture('newUserData').then((data) => {
+            data.email = faker.internet.email(); // Generate a unique email-id
+            testData = data;
+        });
+    });
+
+    it('Should successfully create a new user account with fixture data', () => {
+        const homePage = new HomePage();
+
+        // Using Method Chaining to make it more verbose in line with BDD approach
+        const userAccountPage = homePage.createNewCustomer().createCustomerAccount(testData);
+
+        // Verify User Logged In
+        userAccountPage.getLoggedInUserName().should(
+            'contain',
+            `${testData.firstName} ${testData.lastName}`
+        );
+
+        // Verify registration success message
+        cy.contains('Thank you for registering').should('be.visible');
+    });
+});

@@ -57,6 +57,7 @@ class CreateAccountPage extends BasePage {
 
         cy.get(errorSelectors[field]).should('be.visible')
             .and('contain', expectedMessage);
+        return this;
     }
 
 }
