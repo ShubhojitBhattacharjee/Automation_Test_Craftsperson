@@ -1,4 +1,5 @@
 import BasePage from "./base.page.cy";
+import UserAccountPage from "./user.account.page.cy";
 
 class CreateAccountPage extends BasePage {
     // Get accessors for web elements
@@ -41,9 +42,8 @@ class CreateAccountPage extends BasePage {
             this.passwordField.type(password);
             this.passwordConfirmationField.type(password);
         }
-        // cy.pause();
         this.createAccountButton.click();
-        return this; //TODO return new page
+        return new UserAccountPage();
     }
 
 }

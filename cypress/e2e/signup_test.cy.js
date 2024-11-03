@@ -12,9 +12,10 @@ describe('User Account Flow', () => {
 
         const homePage = new HomePage();
         const createAccountPage = homePage.createNewCustomer();
-        createAccountPage.createCustomerAccount(testData);
+        const userAccountPage = createAccountPage.createCustomerAccount(testData);
 
-        // Verify account creation
+        // Verify User Logged In
+        userAccountPage.getLoggedInUserName().should('contain', testData.firstName + ' ' + testData.lastName);
         cy.contains('Thank you for registering').should('be.visible');
     });
 });
