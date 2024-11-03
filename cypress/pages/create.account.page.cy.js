@@ -46,5 +46,18 @@ class CreateAccountPage extends BasePage {
         return new UserAccountPage();
     }
 
+    getErrorMessage(field, expectedMessage) {
+        const errorSelectors = {
+            firstName: 'div#firstname-error.mage-error',
+            lastName: 'div#lastname-error.mage-error',
+            email: 'div#email_address-error.mage-error',
+            password: 'div#password-error.mage-error',
+            passwordConfirmation: 'div#password-confirmation-error.mage-error'
+        };
+
+        cy.get(errorSelectors[field]).should('be.visible')
+            .and('contain', expectedMessage);
+    }
+
 }
 export default CreateAccountPage;
